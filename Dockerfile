@@ -3,7 +3,7 @@ FROM centos:7
 # Install required dependencies
 
 RUN yum update -y
-RUN yum -y install git patch gcc make epel-release openssl-devel bzip2-devel libffi-devel zlib-devel wget python36 bzip2
+RUN yum -y install git patch gcc make epel-release openssl-devel bzip2-devel libffi-devel zlib-devel wget python36 bzip2 gcc-gfortran
 
 
 # Clone spack repo
