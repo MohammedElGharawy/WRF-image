@@ -110,3 +110,32 @@ WORKDIR "netcdf-3.6.3/"
 RUN bash ./configure && make check install
 
 WORKDIR "/"
+
+#Install PNetcdf-1.12.2
+RUN yum install m4 -y
+RUN wget https://parallel-netcdf.github.io/Release/pnetcdf-1.12.2.tar.gz
+RUN tar -xzf pnetcdf-1.12.2.tar.gz
+WORKDIR "pnetcdf-1.12.2/"
+RUN bash ./configure && make && make install
+
+WORKDIR "/"
+
+#Install bison
+RUN wget http://ftp.gnu.org/gnu/bison/bison-3.4.tar.gz
+RUN tar -xzf bison-3.4.tar.gz
+WORKDIR "bison-3.4/"
+RUN bash ./configure && make && make install
+
+WORKDIR "/"
+
+#Install flex
+RUN wget https://nchc.dl.sourceforge.net/project/flex/flex-2.6.0.tar.bz2
+RUN tar -xf flex-2.6.0.tar.bz2
+WORKDIR "flex-2.6.0"
+RUN bash ./configure && make && make install
+
+WORKDIR "/"
+
+#Install ncl
+RUN wget https://www.earthsystemgrid.org/api/v1/dataset/ncl.650.dap/file/ncl_ncarg-6.5.0-CentOS7.4_64bit_gnu730.tar.gz
+RUN tar -xzf ncl_ncarg-6.5.0-CentOS7.4_64bit_gnu730.tar.gz -C /usr/local
