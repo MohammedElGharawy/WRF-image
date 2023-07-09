@@ -1,0 +1,43 @@
+#Using a saved tar from podman to build singularity .SIF file
+#singularity build --fakeroot local_tar.sif docker-archive://image.tar
+
+-----------------------------------------------------------------------
+
+[elghm0a@gpu214-14 sateesh]$ singularity run local_tar.sif
+Singularity> gcc --version
+gcc (Spack GCC) 9.4.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Singularity> mpiexec --version
+HYDRA build details:
+    Version:                                 3.4.3
+    Release Date:                            Thu Dec 16 11:20:57 CST 2021
+    CC:                              /spack/lib/spack/env/gcc/gcc -std=gnu99
+    Configure options:                       '--disable-option-checking' '--prefix=/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n' '--disable-silent-rules' '--enable-shared' '--with-pm=hydra' '--enable-romio' '--without-ibverbs' '--enable-wrapper-rpath=yes' '--with-yaksa=embedded' '--with-hwloc-prefix=/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/hwloc-2.9.1-rdlczat4himbxtihtxxu5cuwcgkkafea' '--with-slurm=no' '--with-pmi=simple' '--without-hip' '--with-device=ch4:ofi' '--with-libfabric=/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/libfabric-1.18.1-k3bszw747pca2vb2kntiaohwfbwonqpd' '--enable-libxml2' '--with-datatype-engine=auto' 'CC=/spack/lib/spack/env/gcc/gcc -std=gnu99' 'CXX=/spack/lib/spack/env/gcc/g++' 'FC=/spack/lib/spack/env/gcc/gfortran' 'F77=/spack/lib/spack/env/gcc/gfortran' '--cache-file=/dev/null' '--srcdir=.' 'CFLAGS= -O2' 'LDFLAGS= -L/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/libfabric-1.18.1-k3bszw747pca2vb2kntiaohwfbwonqpd/lib -L/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/hwloc-2.9.1-rdlczat4himbxtihtxxu5cuwcgkkafea/lib' 'LIBS=' 'CPPFLAGS= -I/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/libfabric-1.18.1-k3bszw747pca2vb2kntiaohwfbwonqpd/include -DNETMOD_INLINE=__netmod_inline_ofi__ -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/src/mpl/include -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/src/mpl/include -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/modules/yaksa/src/frontend/include -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/modules/yaksa/src/frontend/include -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/modules/json-c -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/modules/json-c -I/spack/opt/spack/linux-centos7-x86_64_v3/gcc-4.8.5/hwloc-2.9.1-rdlczat4himbxtihtxxu5cuwcgkkafea/include -D_REENTRANT -I/tmp/root/spack-stage/spack-stage-mpich-3.4.3-cz3aatjhvktxb5bmm23r7haluadvgf4n/spack-src/src/mpi/romio/include' 'MPLLIBNAME=mpl'
+    Process Manager:                         pmi
+    Launchers available:                     ssh rsh fork slurm ll lsf sge manual persist
+    Topology libraries available:            hwloc
+    Resource management kernels available:   user slurm ll lsf sge pbs cobalt
+    Demux engines available:                 poll select
+Singularity> ls /
+anaconda-post.log    etc                    lib64                                          netcdf-4.1.3           sbin         wgrib2.tgz
+bin                  flex-2.6.0             libpng-1.2.50                                  netcdf-4.1.3.tar.gz    singularity  zlib-1.2.7
+bison-3.4            flex-2.6.0.tar.bz2     libpng-1.2.50.tar.gz                           opt                    spack        zlib-1.2.7.tar.gz
+bison-3.4.tar.gz     grib2                  media                                          pnetcdf-1.12.2         srv
+cmake-3.16.9         home                   mnt                                            pnetcdf-1.12.2.tar.gz  sys
+cmake-3.16.9.tar.gz  jasper-1.900.1         ncl_ncarg-6.5.0-CentOS7.4_64bit_gnu730.tar.gz  proc                   tmp
+dev                  jasper-1.900.1.tar.gz  netcdf-3.6.3                                   root                   usr
+environment          lib                    netcdf-3.6.3.tar.Z                             run                    var
+Singularity> ls /usr/local/bin/
+bison           ESMF_RegridWeightGen  idt              ncargf77      nccopy          ncmpidiff    pnetcdf-config   rasgetpal          WRAPIT
+ccmake          ezmapdemo             imgcmp           ncargf90      ncdump          ncmpidump    pnetcdf_version  rasls              wrapit77
+cdfdiff         fcaps                 imginfo          ncargfile     ncgen           ncmpigen     pre2ncgm         rassplit           WriteLineFile
+cgm2ncgm        findg                 jasper           ncargpath     ncgen3          ncoffsets    pre2ncgm.prog    rasstat            WriteNameFile
+cmake           flex                  libpng12-config  ncargrun      ncgm2cgm        ncvalidator  psblack          rasview            WritePlotcharData
+ConvertMapData  flex++                libpng-config    ncargversion  ncgmstat        ng4ex        psplit           scrip_check_input  yacc
+cpack           fontc                 MakeNcl          ncargworld    ncl             nhlcc        pswhite          tdpackdemo
+ctest           gcaps                 med              ncarlogo2ps   ncl_convert2nc  nhlf77       pwritxnt         tgks0a
+ctlib           graphc                ncargcc          ncarvversion  ncl_filedump    nhlf90       ras2ccir601      tlocal
+ctrans          ictrans               ncargex          nc-config     ncl_grib2nc     nnalg        rascat           tmr
