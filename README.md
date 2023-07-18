@@ -1,4 +1,4 @@
-# ticket-44596
+# WRF / WPS image (ticket-44596)
 
 ## Overview
 
