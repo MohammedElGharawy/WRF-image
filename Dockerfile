@@ -1,7 +1,7 @@
 FROM centos:7
 
 # Install required dependencies
-RUN yum update -y
+RUN yum -y update
 RUN yum -y install gcc gcc-gfortran gcc-c++  git patch make epel-release openssl-devel bzip2-devel libffi-devel zlib-devel wget python36 bzip2
 
 #Install GCC 9.4.0
@@ -157,6 +157,10 @@ RUN ./configure <<< "35"
 RUN ./clean
 RUN ./compile wrf
 RUN ./compile em_real
+ENV PATH=$PATH:/WRF-4.3.3/main
+ENV MANPATH=/WRF-4.3.3/share/man
+ENV WRF_SRC=/WRF-4.3.3/
+ENV WRFIO_NCD_LARGE_FILE_SUPPORT=1
 
 WORKDIR "/"
 RUN rm -rf v4.3.3.tar.gz
@@ -170,6 +174,10 @@ ENV LD_LIBRARY_PATH=/usr/lib64:/usr/lib:$LD_LIBRARY_PATH
 RUN ./configure <<< "3"
 RUN sed -i "s/-lnetcdff -lnetcdf/-lnetcdff -lnetcdf -fopenmp/" ./configure.wps
 RUN ./compile
+ENV PATH=$PATH:/WPS-4.3.1/
+ENV MANPATH=$MANPATH:/WPS-4.3.1/share/man
+ENV WPS_DIR=/WPS-4.3.1/
+ENV WPS_SRC=/WPS-4.3.1/
 
 WORKDIR "/"
 RUN rm -rf v4.3.1.tar.gz
