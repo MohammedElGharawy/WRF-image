@@ -93,6 +93,7 @@ RUN make && make lib
 RUN rm -f /usr/bin/tar && mv /opt/bin/tar /usr/bin/
 
 WORKDIR "/"
+RUN rm -rf wgrib2.tgz
 
 #Install netcdf 4.1.3
 RUN wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/netcdf-4.1.3.tar.gz
